@@ -29,7 +29,7 @@ class BuilderRegistry
         return $this;
     }
 
-    public function baseCommand(string|int|Builder $command): static
+    public function bashCommand(string|int|Builder $command): static
     {
         $this->sections[] = "$($command)";
 

@@ -19,10 +19,10 @@
 
     $reg = BuilderRegistry::init($command1,true);
 
-    $reg->baseCommand('dirname "z.zip"');
+    $reg->bashCommand('dirname "z.zip"');
 
     $reg->and()->withCommand($command2);
-    $reg->pipe()->baseCommand($command3);
+    $reg->pipe()->bashCommand($command3);
     $reg->outputRedirection()->withCommand('log.txt');
     $reg->semicolon();
 
