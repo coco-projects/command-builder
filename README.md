@@ -1,1 +1,12 @@
-# command-builder
+
+## Testing
+
+``` bash
+composer test
+```
+
+## License
+
+---
+
+MIT
