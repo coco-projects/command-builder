@@ -2,14 +2,11 @@
 
     namespace Coco\commandBuilder\command;
 
-    use Coco\commandBuilder\abstract\CommandAbstract;
+    use Coco\commandBuilder\abstract\NamedCommand;
 
-class Cd extends CommandAbstract
+class Cd extends NamedCommand
 {
-    public function __construct()
-    {
-        parent::__construct('cd');
-    }
+    protected static string $name = 'cd';
 
     public function target(string $dir): static
     {

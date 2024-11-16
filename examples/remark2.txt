@@ -1,0 +1,118 @@
+以下是一些常用的 Linux 下的通用命令，涵盖了文档管理、系统管理、网络配置、进程管理等常见任务。
+
+1. 文档和目录管理
+ls：列出目录内容
+ls -l：列出详细信息
+ls -a：列出包括隐藏文档的内容
+cd：切换目录
+cd /path/to/dir：进入指定路径的目录
+cd ..：返回上一级目录
+cd ~：进入用户的家目录
+pwd：显示当前工作目录的绝对路径
+mkdir：创建目录
+mkdir dir_name：创建目录
+mkdir -p /path/to/dir：递归创建目录
+rmdir：删除空目录
+rm：删除文档或目录
+rm file_name：删除文档
+rm -r dir_name：删除目录及其内容
+rm -f file_name：强制删除文档
+cp：复制文档或目录
+cp source_file destination_file：复制文档
+cp -r source_dir destination_dir：递归复制目录
+mv：移动文档或目录，或重命名文档
+mv old_name new_name：重命名文档
+mv file_name /path/to/dir：移动文档到指定目录
+touch：创建空文档或修改文档的时间戳
+find：查找文档或目录
+find /path -name "filename"：查找指定文档
+find /path -type f：查找所有文档
+locate：快速查找文档（依赖数据库，需定期更新）
+updatedb：更新 locate 的数据库
+2. 文档内容查看与处理
+cat：显示文档内容
+cat file_name：查看文档内容
+more：分页查看文档内容
+less：分页查看文档内容，支持上下滚动
+less file_name：查看文档内容
+head：查看文档开头部分内容
+head -n 10 file_name：显示文档的前 10 行
+tail：查看文档末尾部分内容
+tail -n 10 file_name：显示文档的最后 10 行
+tail -f file_name：实时查看文档内容（例如查看日志文档）
+grep：在文档中搜索内容
+grep "pattern" file_name：在文档中查找包含 pattern 的行
+grep -r "pattern" /path：递归查找指定目录下所有文档中的内容
+wc：统计文档中的字数、行数等
+wc -l file_name：显示文档行数
+wc -w file_name：显示文档单词数
+3. 系统信息
+top：查看实时的系统进程
+htop：一个比 top 更友好的进程监视工具（需要安装）
+ps：查看当前系统的进程
+ps aux：显示所有进程的详细信息
+uptime：显示系统的运行时间和负载
+free：查看内存使用情况
+free -h：以人类可读的格式显示内存使用情况
+df：查看磁盘空间使用情况
+df -h：以人类可读的格式显示磁盘空间
+du：查看文档或目录占用的磁盘空间
+du -sh dir_name：显示目录的总大小
+dmesg：查看内核的启动信息和硬件信息
+uname：查看系统信息
+uname -a：显示所有系统信息
+4. 网络管理
+ping：测试网络连通性
+ping host：向指定主机发送 ICMP 请求
+ifconfig：查看和配置网络接口（旧版，已被 ip 命令替代）
+ip：查看和配置网络接口（现代 Linux 系统使用的工具）
+ip addr：显示所有网络接口信息
+ip link show：显示网络接口状态
+ip a：简洁方式查看网络接口信息
+netstat：查看网络连接状态
+netstat -tuln：查看监听中的端口
+ss：查看网络连接状态，替代 netstat
+ss -tuln：显示监听的端口
+traceroute：追踪数据包的路由路径
+curl：命令行工具，用于发送 HTTP 请求
+curl http://example.com：获取指定 URL 内容
+wget：命令行下载工具
+wget http://example.com/file：下载文档
+5. 用户与权限管理
+useradd：添加用户
+useradd username：创建新用户
+usermod：修改用户
+usermod -aG group username：将用户添加到指定的组
+passwd：修改用户密码
+passwd username：修改指定用户的密码
+groupadd：添加用户组
+chown：改变文档或目录的拥有者
+chown user:group file_name：修改文档的拥有者和所属组
+chmod：改变文档或目录的权限
+chmod 755 file_name：设置文档权限为 rwxr-xr-x
+chmod +x file_name：增加可执行权限
+chgrp：改变文档或目录的组
+chgrp group_name file_name：将文档所属组修改为指定组
+6. 包管理（具体命令视发行版而定）
+Debian/Ubuntu 系统（使用 apt 包管理器）
+apt update：更新软件包索引
+apt upgrade：升级所有已安装的软件包
+apt install package_name：安装指定的软件包
+apt remove package_name：卸载指定的软件包
+apt search package_name：搜索软件包
+Red Hat/CentOS 系统（使用 yum 或 dnf 包管理器）
+yum update 或 dnf update：更新所有已安装的软件包
+yum install package_name 或 dnf install package_name：安装指定的软件包
+yum remove package_name 或 dnf remove package_name：卸载指定的软件包
+yum search package_name 或 dnf search package_name：搜索软件包
+7. 压缩与解压
+tar：打包和解包
+tar -cvf archive.tar /path/to/dir：创建压缩包
+tar -xvf archive.tar：解压 tar 包
+gzip：压缩文档
+gzip file_name：压缩文档
+gunzip file_name.gz：解压文档
+zip 和 unzip：压缩和解压 zip 文档
+zip archive.zip file_name：创建 zip 压缩文档
+unzip archive.zip：解压 zip 文档
+这些命令涵盖了大部分常见的 Linux 操作，了解它们将帮助你更高效地使用和管理 Linux 系统。

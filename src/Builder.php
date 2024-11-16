@@ -2,19 +2,18 @@
 
     namespace Coco\commandBuilder;
 
+    use Coco\commandBuilder\abstract\CommandAbstract;
     use Coco\commandBuilder\sections\Argument;
     use Coco\commandBuilder\sections\Flag;
     use Coco\commandBuilder\sections\Option;
-    use Coco\commandBuilder\sections\Subcommand;
+    use Coco\commandBuilder\sections\SubCommand;
 
-class Builder
+class Builder extends CommandAbstract
 {
     protected string             $command;
-    protected bool               $withBash   = false;
-    protected string|int|Builder $subcommand = '';
-    protected array              $sections   = [];
+    protected string|int|Builder $subCommand = '';
 
-    public function __construct($command)
+    public function __construct(string|int|Builder $command)
     {
         $this->command = $command;
     }
@@ -39,27 +38,29 @@ class Builder
 
     public function addArgument(string|int|Builder $value): Argument
     {
-        $section = new  Argument($value);
+        $section = new Argument($value);
 
         $this->sections[] = $section;
 
         return $section;
     }
 
-    public function setSubcommand(string|int|Builder $value): Subcommand
+    public function setSubCommand(string|int|Builder $value): SubCommand
     {
-        $section = new  Subcommand($value);
+        $section = new SubCommand($value);
 
         $this->sections[] = $section;
 
         return $section;
     }
 
-    public function withBash(): static
+    public function addEnd(string|int|Builder $value): SubCommand
     {
-        $this->withBash = true;
+        $section = new SubCommand($value);
 
-        return $this;
+        $this->end[] = $section;
+
+        return $section;
     }
 
     public function build(callable $callback): string
@@ -69,22 +70,25 @@ class Builder
         return $this;
     }
 
-    public function __toString(): string
+    protected function buildCommand(): string
     {
         $value = implode('', [
             $this->command,
-            trim($this->subcommand) ? ' ' . trim($this->subcommand) : '',
+            trim($this->subCommand) ? ' ' . trim($this->subCommand) : '',
         ]);
 
         foreach ($this->sections as $k => $v) {
-            $t = (string)$v;
+            $t = trim((string)$v);
             if ($t) {
                 $value .= ' ' . $t;
             }
         }
 
-        if ($this->withBash) {
-            $value = "$($value)";
+        foreach ($this->end as $k => $v) {
+            $t = trim((string)$v);
+            if ($t) {
+                $value .= ' ' . $t;
+            }
         }
 
         return $value;

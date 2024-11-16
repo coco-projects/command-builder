@@ -8,7 +8,7 @@
     use Coco\commandBuilder\Builder;
 
     // list
-class Subcommand extends SectionAbstract
+class SubCommand extends SectionAbstract
 {
     protected string|int|Builder $value = '';
 
@@ -19,6 +19,6 @@ class Subcommand extends SectionAbstract
 
     public function toString(): string
     {
-        return trim($this->value);
+        return trim((string)$this->value);
     }
 }

@@ -1,0 +1,72 @@
+└─[130] <> chown --help                          
+Usage: chown [OPTION]... [OWNER][:[GROUP]] FILE...
+  or:  chown [OPTION]... --reference=RFILE FILE...
+Change the owner and/or group of each FILE to OWNER and/or GROUP.
+With --reference, change the owner and group of each FILE to those of RFILE.
+
+  -c, --changes          like verbose but report only when a change is made
+  -f, --silent, --quiet  suppress most error messages
+  -v, --verbose          output a diagnostic for every file processed
+      --dereference      affect the referent of each symbolic link (this is
+                         the default), rather than the symbolic link itself
+  -h, --no-dereference   affect symbolic links instead of any referenced file
+                         (useful only on systems that can change the
+                         ownership of a symlink)
+      --from=CURRENT_OWNER:CURRENT_GROUP
+                         change the owner and/or group of each file only if
+                         its current owner and/or group match those specified
+                         here.  Either may be omitted, in which case a match
+                         is not required for the omitted attribute
+      --no-preserve-root  do not treat '/' specially (the default)
+      --preserve-root    fail to operate recursively on '/'
+      --reference=RFILE  use RFILE's owner and group rather than
+                         specifying OWNER:GROUP values
+  -R, --recursive        operate on files and directories recursively
+
+The following options modify how a hierarchy is traversed when the -R
+option is also specified.  If more than one is specified, only the final
+one takes effect.
+
+  -H                     if a command line argument is a symbolic link
+                         to a directory, traverse it
+  -L                     traverse every symbolic link to a directory
+                         encountered
+  -P                     do not traverse any symbolic links (default)
+  
+ --------
+
+	上面的数据，对应写成下面的代码，将所有的方法都写出来，代码发给我
+	
+	规则：
+	类似 -E, --extended-regexp,不是键值对的，就用 $this->addFlag('E'); addFlag 的第一个参数只需要写E,不用写-E
+	
+	类似 --no-group-separator,不是键值对的，但是没有简写字母的，就用 $this->addOption('no-group-separator'); addOption 的第一个参数只需要写 exclude-from,不用写 --exclude-from
+	
+	类似 -m, --max-count=NUM,是键值对的，就用 $this->addFlag('m',$value);
+	
+	类似 --exclude-from=FILE,是键值对的，但是没有简写字母的，就用 $this->addOption('exclude-from', $value);
+	
+	注释翻译为中文
+	
+	示例代码：
+    class Grep extends NamedCommand
+    {
+        protected static string $name = 'grep';
+
+        // 使用扩展正则表达式（例如 `+`、`?` 等）
+        public function useExtendedRegex(): static
+        {
+            $this->addFlag('E');
+
+            return $this;
+        }
+		
+
+        // 从文档中获取 PATTERNS
+        public function useFile(string $file): static
+        {
+            $this->addOption('file', $file);
+
+            return $this;
+        }
+    }

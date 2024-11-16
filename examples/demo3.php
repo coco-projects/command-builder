@@ -3,28 +3,39 @@
     use Coco\commandBuilder\Builder;
     use Coco\commandBuilder\BuilderRegistry;
     use Coco\commandBuilder\command\Grep;
+    use Coco\commandBuilder\command\Nohup;
+    use Coco\commandBuilder\command\Sudo;
 
     require '../vendor/autoload.php';
 
     $command1 = new Builder('command');
-    $command1->addArgument('agr1');
+    $command1->addArgument('agr11');
 
     $command2 = new Builder('command2');
-    $command2->withBash();
-    $command2->addArgument('agr1');
+    $command2->addArgument('agr21');
 
     $command3 = Grep::getIns();
     $command3->addFlag('iP');
     $command3->addArgument('test')->sq();
 
-    $reg = BuilderRegistry::init($command1,true);
+    $reg = BuilderRegistry::getIns();
 
-    $reg->bashCommand('dirname "z.zip"');
+    $sudo = Sudo::getIns();
+    $sudo->setSubCommand($command1);
 
-    $reg->and()->withCommand($command2);
-    $reg->pipe()->bashCommand($command3);
-    $reg->outputRedirection()->withCommand('log.txt');
+    $reg->command($sudo);
+    $reg->and();
+    $reg->commandBash('dirname "z.zip"');
+
+    $reg->and()->command($command2);
+    $reg->pipe()->commandBash($command3);
+    $reg->outputRedirection()->raw('log.txt');
     $reg->semicolon();
 
-//   sudo command agr1 $(dirname "z.zip") && $(command2 agr1) | $(grep -iP 'test') > log.txt ;
-    echo $reg;
+    $nohup = Nohup::getIns();
+    $nohup->runBackend();
+
+    $nohup->setSubCommand($reg);
+
+//   nohup sudo command agr11 && $(dirname "z.zip") && command2 agr21 | $(grep -iP 'test') > log.txt ; &
+    echo $nohup;

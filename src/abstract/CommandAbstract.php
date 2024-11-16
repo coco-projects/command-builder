@@ -2,12 +2,15 @@
 
     namespace Coco\commandBuilder\abstract;
 
-    use Coco\commandBuilder\Builder;
-
-class CommandAbstract extends Builder
+abstract class CommandAbstract
 {
-    public static function getIns(): static
+    protected array $sections = [];
+    protected array $end      = [];
+
+    abstract protected function buildCommand(): string;
+
+    public function __toString(): string
     {
-        return new static();
+        return $this->buildCommand();
     }
 }

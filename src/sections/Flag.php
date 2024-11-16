@@ -8,6 +8,7 @@
     use Coco\commandBuilder\Builder;
 
     //-t
+    //-t=value
     //-n.1
 class Flag extends SectionAbstract
 {

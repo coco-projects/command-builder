@@ -2,12 +2,9 @@
 
     namespace Coco\commandBuilder\command;
 
-    use Coco\commandBuilder\abstract\CommandAbstract;
+    use Coco\commandBuilder\abstract\NamedCommand;
 
-class Sudo extends CommandAbstract
+class Sudo extends NamedCommand
 {
-    public function __construct()
-    {
-        parent::__construct('sudo');
-    }
+    protected static string $name = 'sudo';
 }

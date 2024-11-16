@@ -2,34 +2,30 @@
 
     namespace Coco\commandBuilder;
 
-    use Coco\commandBuilder\command\Sudo;
+    use Coco\commandBuilder\abstract\CommandAbstract;
 
-class BuilderRegistry
+class BuilderRegistry extends CommandAbstract
 {
-    protected array $sections = [];
-
-    public static function init(string|int|Builder $command, $withSudo = false): static
+    public static function getIns(): static
     {
-        if ($withSudo) {
-            return (new static(Sudo::getIns()))->withCommand($command);
-        }
-
-        return new static($command);
+        return new static();
     }
 
-    protected function __construct(string|int|Builder $command)
+    public function raw(string|int|Builder $command): static
     {
-        $this->sections[] = $command;
+        $this->command($command);
+
+        return $this;
     }
 
-    public function withCommand(string|int|Builder $command): static
+    public function command(string|int|Builder $command): static
     {
         $this->sections[] = $command;
 
         return $this;
     }
 
-    public function bashCommand(string|int|Builder $command): static
+    public function commandBash(string|int|Builder $command): static
     {
         $this->sections[] = "$($command)";
 
@@ -93,12 +89,20 @@ class BuilderRegistry
         return $this;
     }
 
-    public function __toString(): string
+    protected function buildCommand(): string
     {
         $value = '';
 
         foreach ($this->sections as $k => $v) {
-            if ($t = (string)$v) {
+            $t = trim((string)$v);
+            if ($t) {
+                $value .= ' ' . $t;
+            }
+        }
+
+        foreach ($this->end as $k => $v) {
+            $t = trim((string)$v);
+            if ($t) {
                 $value .= ' ' . $t;
             }
         }

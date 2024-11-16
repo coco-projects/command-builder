@@ -6,7 +6,7 @@
 
     $ls = Ls::getIns();
 
-    //ls /etc -h -al
-    $ls->target('/etc')->readable()->addFlag('al');
+    //ls /etc -d -h -al
+    $ls->target('/etc')->humanReadable()->addFlag('al');
 
     echo $ls;
