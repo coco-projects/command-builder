@@ -11,6 +11,14 @@ class Du extends NamedCommand
         return 'du';
     }
 
+    // 设置目标目录
+    public function target(string $dir): static
+    {
+        $this->addArgument($dir);
+
+        return $this;
+    }
+
     // 每行输出以 NUL 结束，而不是换行
     public function null(): static
     {

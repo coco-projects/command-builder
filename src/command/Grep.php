@@ -11,6 +11,22 @@ class Grep extends NamedCommand
         return 'grep';
     }
 
+    // 匹配名
+    public function pattern(string $pattern): static
+    {
+        $this->addArgument($pattern);
+
+        return $this;
+    }
+
+    // 设置目标目录
+    public function target(string $dir): static
+    {
+        $this->addArgument($dir);
+
+        return $this;
+    }
+
     // 使用扩展正则表达式（例如 `+`、`?` 等）
     public function useExtendedRegex(): static
     {

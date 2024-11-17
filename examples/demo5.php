@@ -6,6 +6,8 @@
 
     $command = Grep::getIns();
 
-    $command->usePerlRegex()->ignoreCase()->withFilename()->useFile('aa.txt');
+    $command->usePerlRegex()->ignoreCase()->withFilename()->pattern('hello')->target('./dir');
 
+    //grep -P -i -H hello ./dir
     echo $command;
+

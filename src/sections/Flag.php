@@ -38,7 +38,9 @@ class Flag extends SectionAbstract
                 break;
         }
 
-        if (empty($this->value)) {
+        $value = (string)$value;
+
+        if (empty($value)) {
             return implode('', [
                 '-',
                 trim($this->key),

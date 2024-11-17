@@ -33,6 +33,6 @@ class Argument extends SectionAbstract
                 break;
         }
 
-        return trim($value);
+        return trim((string)$value);
     }
 }
