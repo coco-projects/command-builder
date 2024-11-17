@@ -6,7 +6,10 @@
 
 class Free extends NamedCommand
 {
-    protected static string $name = 'free';
+    protected static function resolveName(): string
+    {
+        return 'free';
+    }
 
     // 以字节为单位显示输出
     public function bytes(): static

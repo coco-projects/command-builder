@@ -6,7 +6,10 @@
 
 class Chmod extends NamedCommand
 {
-    protected static string $name = 'chmod';
+    protected static function resolveName(): string
+    {
+        return 'chmod';
+    }
 
     // 设置目标权限
     public function privilege(string $privilege): static

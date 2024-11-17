@@ -6,7 +6,10 @@
 
 class Netstat extends NamedCommand
 {
-    protected static string $name = 'netstat';
+    protected static function resolveName(): string
+    {
+        return 'netstat';
+    }
 
     // 显示路由表
     public function showRoutingTable(): static

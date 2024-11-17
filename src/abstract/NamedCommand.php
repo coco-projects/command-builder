@@ -6,10 +6,16 @@
 
 class NamedCommand extends Builder
 {
-    protected static string $name;
-
-    public static function getIns(): static
+    protected static function resolveName(): string
     {
-        return new static(static::$name);
+    }
+
+    public static function getIns(?string $name = null): static
+    {
+        if (is_null($name)) {
+            $name = static::resolveName();
+        }
+
+        return new static($name);
     }
 }

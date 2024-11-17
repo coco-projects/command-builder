@@ -6,5 +6,8 @@
 
 class Sudo extends NamedCommand
 {
-    protected static string $name = 'sudo';
+    protected static function resolveName(): string
+    {
+        return 'sudo';
+    }
 }

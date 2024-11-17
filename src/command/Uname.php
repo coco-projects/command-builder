@@ -6,7 +6,10 @@
 
 class Uname extends NamedCommand
 {
-    protected static string $name = 'uname';
+    protected static function resolveName(): string
+    {
+        return 'uname';
+    }
 
     // 打印所有信息，按以下顺序排列
     public function all(): static

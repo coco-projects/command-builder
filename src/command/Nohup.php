@@ -6,7 +6,10 @@
 
 class Nohup extends NamedCommand
 {
-    protected static string $name = 'nohup';
+    protected static function resolveName(): string
+    {
+        return 'nohup';
+    }
 
     public function runBackend(): static
     {

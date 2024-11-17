@@ -6,7 +6,10 @@
 
 class Ps extends NamedCommand
 {
-    protected static string $name = 'ps';
+    protected static function resolveName(): string
+    {
+        return 'ps';
+    }
 
     // 显示所有进程（包括其他用户的进程）
     public function showAll(): static

@@ -6,7 +6,10 @@
 
 class Dmesg extends NamedCommand
 {
-    protected static string $name = 'dmesg';
+    protected static function resolveName(): string
+    {
+        return 'dmesg';
+    }
 
     // 清除内核环缓冲区
     public function clear(): static

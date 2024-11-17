@@ -6,7 +6,10 @@
 
 class Chown extends NamedCommand
 {
-    protected static string $name = 'chown';
+    protected static function resolveName(): string
+    {
+        return 'chown';
+    }
 
     // 设置用户和组
     public function userAndGroup(string $userAndGroup): static

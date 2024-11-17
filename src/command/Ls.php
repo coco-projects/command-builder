@@ -6,7 +6,10 @@
 
 class Ls extends NamedCommand
 {
-    protected static string $name = 'ls';
+    protected static function resolveName(): string
+    {
+        return 'ls';
+    }
 
     // 设置目标目录
     public function target(string $dir): static

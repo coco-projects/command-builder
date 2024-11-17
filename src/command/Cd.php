@@ -6,7 +6,10 @@
 
 class Cd extends NamedCommand
 {
-    protected static string $name = 'cd';
+    protected static function resolveName(): string
+    {
+        return 'cd';
+    }
 
     public function target(string $dir): static
     {

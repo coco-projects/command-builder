@@ -6,7 +6,10 @@
 
 class Wc extends NamedCommand
 {
-    protected static string $name = 'wc';
+    protected static function resolveName(): string
+    {
+        return 'wc';
+    }
 
     // 打印字节计数
     public function bytes(): static

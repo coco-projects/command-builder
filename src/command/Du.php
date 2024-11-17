@@ -6,7 +6,10 @@
 
 class Du extends NamedCommand
 {
-    protected static string $name = 'du';
+    protected static function resolveName(): string
+    {
+        return 'du';
+    }
 
     // 每行输出以 NUL 结束，而不是换行
     public function null(): static

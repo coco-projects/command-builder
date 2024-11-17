@@ -6,7 +6,10 @@
 
 class Grep extends NamedCommand
 {
-    protected static string $name = 'grep';
+    protected static function resolveName(): string
+    {
+        return 'grep';
+    }
 
     // 使用扩展正则表达式（例如 `+`、`?` 等）
     public function useExtendedRegex(): static

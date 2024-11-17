@@ -1,12 +1,21 @@
 <?php
 
-    use Coco\commandBuilder\command\Ls;
+    use Coco\commandBuilder\abstract\NamedCommand;
+    use Coco\commandBuilder\command\Nohup;
 
     require '../vendor/autoload.php';
 
-    $ls = Ls::getIns();
+    $command = NamedCommand::getIns('/etc/some-bin');
 
-    //ls /etc -d -h -al
-    $ls->target('/etc')->humanReadable()->addFlag('al');
+    $command->addOption('op1');
+    $command->addFlag('flag1');
 
-    echo $ls;
+    $command->addOption('op2', 'value1');
+    $command->addFlag('flag3', 'value2');
+
+    $nohup = Nohup::getIns()->runBackend();
+    $nohup->setSubCommand($command);
+
+    echo $nohup;
+    echo PHP_EOL;
+    echo $command;

@@ -6,7 +6,10 @@
 
 class Df extends NamedCommand
 {
-    protected static string $name = 'df';
+    protected static function resolveName(): string
+    {
+        return 'df';
+    }
 
     // 包括伪文档系统、重复文档系统和无法访问的文档系统
     public function all(): static
