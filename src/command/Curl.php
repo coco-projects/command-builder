@@ -997,7 +997,7 @@ class Curl extends NamedCommand
     // OAuth 2 Bearer Token
     public function oauth2Bearer(string $token): static
     {
-        $this->addOption('oauth2-bearer', $token);
+        $this->addOption('oauth2-bearer', $token)->noMark();
 
         return $this;
     }
