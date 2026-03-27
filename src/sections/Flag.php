@@ -40,7 +40,7 @@ class Flag extends SectionAbstract
 
         $value = (string)$value;
 
-        if (empty($value)) {
+        if ($value === '') {
             return implode('', [
                 '-',
                 trim($this->key),

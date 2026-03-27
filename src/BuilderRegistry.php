@@ -95,14 +95,14 @@ class BuilderRegistry extends CommandAbstract
 
         foreach ($this->sections as $k => $v) {
             $t = trim((string)$v);
-            if ($t) {
+            if ($t!=='') {
                 $value .= ' ' . $t;
             }
         }
 
         foreach ($this->end as $k => $v) {
             $t = trim((string)$v);
-            if ($t) {
+            if ($t!=='') {
                 $value .= ' ' . $t;
             }
         }
