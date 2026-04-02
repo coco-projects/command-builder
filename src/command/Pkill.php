@@ -113,9 +113,9 @@ class Pkill extends NamedCommand
     }
 
     // 发送信号（可以是数字或名称）
-    public function sendSignal(string $sig): static
+    public function signal(string $sig): static
     {
-        $this->addFlag('signal', $sig);
+        $this->addOption('signal', $sig);
 
         return $this;
     }
